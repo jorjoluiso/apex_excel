@@ -10,8 +10,14 @@
         String txtFileNameVariable = "Totales.xls";
         String locationVariable = System.getProperty("java.io.tmpdir") + File.separatorChar;
         String PathVariable = "";
+        
+        if(request.getParameter("usuario") == null){
+            return;
+        }
+        
+        String usuario = request.getParameter("usuario");
 
-        Reportes reporte = new Reportes();
+        Reportes reporte = new Reportes(usuario);
 
         reporte.getTotales();
 

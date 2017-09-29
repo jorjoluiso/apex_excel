@@ -13,10 +13,12 @@
     </head>
     <body>
         <h2>Reportes Apex - Excel</h2>
-        <form method="post" action="success.jsp">
+        <form method="get" action="success.jsp">
             <p>
-            <p><input type="submit" value="Create" 
-                      onclick="document.location = 'success.jsp';"/>
+                <input type="text" value=""/>
+            <p>
+                <input type="submit" value="Create" 
+                       onclick="document.location = 'success.jsp';"/>
             </p>
         </form>
     </body>

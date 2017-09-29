@@ -27,18 +27,24 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
  * @author jorgequiguango
  */
 public class Reportes {
-
+    
+    String usuario;
+    
+    public Reportes(String usuario) {
+        this.usuario = usuario;
+    }
+    
     public void getTotales() {
         try {
             MotorConfiguracion configMotor = new MotorConfiguracion();
             DataBaseConnection oc = new DataBaseConnection();
             Connection conn;
             conn = oc.getConnection(configMotor.getHost(), configMotor.getPuerto(), configMotor.getServicio(), configMotor.getUsuario(), configMotor.getClave());
-
+            
             Statement stmt = null;
             ResultSet rs = null;
             stmt = conn.createStatement();
-
+            
             rs = stmt.executeQuery("SELECT "
                     + "orden,"
                     + "descripcion,"
@@ -51,9 +57,9 @@ public class Reportes {
                     + "abono,saldo "
                     + "FROM v_super_totales "
                     + "order by orden asc");
-
+            
             excel(rs);
-
+            
             rs.close();
             stmt.close();
             conn.close();
@@ -61,14 +67,19 @@ public class Reportes {
             Logger.getLogger(Reportes.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
     public void excel(ResultSet rs) {
         FileOutputStream fileOut = null;
         try {
             HSSFWorkbook wb = new HSSFWorkbook();
             int r = 0;
             HSSFSheet sheet = wb.createSheet("Totales");
-
+            
+            HSSFRow rowUsuario = sheet.createRow(r);
+            HSSFCell cellUsuario = rowUsuario.createCell(0, HSSFCell.CELL_TYPE_STRING);
+            cellUsuario.setCellValue(usuario);
+            r++;
+            
             while (rs.next()) {
                 HSSFRow row = sheet.createRow(r);
 
@@ -106,9 +117,9 @@ public class Reportes {
             }
         }
     }
-
+    
     public static void main(String[] args) throws SQLException {
-        Reportes r = new Reportes();
+        Reportes r = new Reportes("dismemayor");
         r.getTotales();
     }
 }
