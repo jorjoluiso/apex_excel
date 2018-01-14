@@ -6,6 +6,7 @@
 package com.reportes.superjasper;
 
 import com.db.DataBaseConnection;
+import com.propiedades.General;
 import com.propiedades.MotorConfiguracion;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -43,8 +44,10 @@ public class SuperTotales {
         DataBaseConnection oc = new DataBaseConnection();
         Connection conn;
         conn = oc.getConnection(configMotor.getHost(), configMotor.getPuerto(), configMotor.getServicio(), configMotor.getUsuario(), configMotor.getClave());
-
-        String archivo = "/data/git/apex_excel/src/java/com/reportes/recursos/RptMorosidadClientes.jasper";
+        
+        General general = new General();
+        
+        String archivo = general.ReportesJasper + File.separatorChar + "RptMorosidadClientes.jasper";
         System.out.println("Archivo cargado desde :" + archivo);
         JasperReport masterReport = null;
 

@@ -31,6 +31,7 @@ public class General {
     public String BaseDatos;
     public String Publicidad;
     public String Nombre;
+    public String ReportesJasper;
 
     public General() {
         try {
@@ -52,9 +53,14 @@ public class General {
                 config.setProperty("general.Nombre", "QuijoteLu");
                 config.save();
             }
+            if (config.getProperty("general.ReportesJasper") == null) {
+                config.setProperty("general.ReportesJasper", "/app/reportes");
+                config.save();
+            }
             BaseDatos = (String) config.getProperty("general.BaseDatos");
             Publicidad = (String) config.getProperty("general.Publicidad");
             Nombre = (String) config.getProperty("general.Nombre");
+            ReportesJasper = (String) config.getProperty("general.ReportesJasper");
 
         } catch (ConfigurationException ex) {
             Logger.getLogger(General.class.getName()).log(Level.SEVERE, null, ex);
