@@ -39,7 +39,7 @@
         System.out.println("La conexión a la base Oracle de datos fallo");
     }
 
-    String archivo = "/data/git/apex_excel_disme/src/java/com/reportes/recursos/RptMorosidadClientes.jasper";
+    String archivo = "/data/git/apex_excel/src/java/com/reportes/recursos/RptMorosidadClientes.jasper";
     System.out.println("Archivo cargado desde :" + archivo);
     JasperReport masterReport = null;
 
@@ -55,7 +55,11 @@
 
     try {
         JasperPrint jp = JasperFillManager.fillReport(masterReport, parametro, conn);
-        OutputStream output = new FileOutputStream(new File("/tmp/jasper.pdf"));
+        OutputStream output = new FileOutputStream(
+                new File(
+                System.getProperty("java.io.tmpdir") + 
+                File.separatorChar + 
+                "jasper.pdf"));
         JasperExportManager.exportReportToPdfStream(jp, output);
         output.close();
 
@@ -64,4 +68,47 @@
     }
     System.out.println("Fin de aplicación");
 
+    
+    try {
+        String txtFileNameVariable = "jasper.pdf";
+        String locationVariable = System.getProperty("java.io.tmpdir") + File.separatorChar;
+        String PathVariable = "";
+        
+       
+        PathVariable = locationVariable + txtFileNameVariable;
+        BufferedInputStream bufferedInputStream = null;
+        try {
+            bufferedInputStream = new BufferedInputStream(new java.io.FileInputStream(PathVariable));
+        } catch (FileNotFoundException fnfe) {
+            fnfe.printStackTrace();
+        }
+        File f = new File(locationVariable, txtFileNameVariable);
+        String fileType = txtFileNameVariable.substring(txtFileNameVariable.indexOf(".") + 1, txtFileNameVariable.length());
+        if (fileType.trim().equalsIgnoreCase("txt")) {
+            response.setContentType("text/plain");
+        } else if (fileType.trim().equalsIgnoreCase("doc")) {
+            response.setContentType("application/msword");
+        } else if (fileType.trim().equalsIgnoreCase("xls")) {
+            response.setContentType("application/vnd.ms-excel");
+        } else if (fileType.trim().equalsIgnoreCase("pdf")) {
+            response.setContentType("application/pdf");
+        } else {
+            response.setContentType("application/octet-stream");
+        }
+        String original_filename = txtFileNameVariable;
+        response.setHeader("Content-Disposition", "attachment; filename=\"" + original_filename + "\"");
+        try {
+            int anInt = 0;
+            OutputStream output = response.getOutputStream();
+            while ((anInt = bufferedInputStream.read()) != -1) {
+                output.write(anInt);
+            }
+            output.flush();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+    } catch (Exception e) {
+        out.println("This is the Error " + e.getMessage());
+    }
+    
 %>

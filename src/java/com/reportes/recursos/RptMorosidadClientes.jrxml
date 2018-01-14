@@ -11,7 +11,7 @@
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA["/data/git/apex_excel_disme/src/java/com/reportes/recursos/"]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA["/data/git/apex_excel/src/java/com/reportes/recursos/"]]></defaultValueExpression>
 	</parameter>
 	<queryString>
 		<![CDATA[select DISTINCT TO_CHAR(FECHA_CREACION,'yyyy') AS ANIO,
