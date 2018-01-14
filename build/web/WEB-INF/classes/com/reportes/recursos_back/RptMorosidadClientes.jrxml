@@ -4,7 +4,10 @@
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<style name="style1" backcolor="#33CCFF" fontSize="10"/>
-	<parameter name="P_USUARIO" class="java.lang.String">
+	<parameter name="UNANIO" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="UNMESINICIO" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
@@ -14,7 +17,7 @@
 		<![CDATA[SELECT
     *
 FROM V_SUPER_FECHA_PARAMETROS
-WHERE USUARIO=$P{P_USUARIO}]]>
+WHERE USUARIO='DISMEMAYOR']]>
 	</queryString>
 	<field name="FECHA_INICIAL" class="java.lang.String"/>
 	<field name="FECHA_FINAL" class="java.lang.String"/>
@@ -53,59 +56,49 @@ WHERE USUARIO=$P{P_USUARIO}]]>
 		</band>
 	</background>
 	<title>
-		<band height="30">
-			<textField>
-				<reportElement x="0" y="-1" width="555" height="20" uuid="1189c633-b083-4e5e-be36-db32480bc39b"/>
-				<textElement textAlignment="Center">
-					<font size="12" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{EMPRESA}]]></textFieldExpression>
-			</textField>
-		</band>
-	</title>
-	<pageHeader>
-		<band height="30">
+		<band height="12">
 			<staticText>
-				<reportElement x="0" y="0" width="555" height="20" uuid="66aa0e2c-5284-4d9d-93c9-fc84901c275e"/>
-				<textElement textAlignment="Center">
-					<font size="12" isBold="false" isUnderline="false"/>
-				</textElement>
-				<text><![CDATA[Reporte de morosidad de clientes]]></text>
-			</staticText>
-		</band>
-	</pageHeader>
-	<columnHeader>
-		<band height="13" splitType="Stretch">
-			<staticText>
-				<reportElement x="44" y="0" width="127" height="12" uuid="d5045f2c-e847-4e26-a2b8-451afdd0ae49"/>
+				<reportElement x="81" y="0" width="100" height="12" uuid="d5045f2c-e847-4e26-a2b8-451afdd0ae49"/>
 				<textElement>
-					<font size="9" isBold="false" isUnderline="false"/>
+					<font size="9" isBold="true" isUnderline="false"/>
 				</textElement>
-				<text><![CDATA[PERIODO DE REPORTE:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="200" y="0" width="16" height="12" uuid="154d05b9-7dac-4a07-898d-20effa2fc86e"/>
-				<textElement textAlignment="Center">
-					<font size="9" isBold="false" isUnderline="false"/>
-				</textElement>
-				<text><![CDATA[del]]></text>
+				<text><![CDATA[PERIODO:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="234" y="0" width="100" height="12" uuid="32ee94bf-95fb-4dad-a9d8-a137b39157bd"/>
+				<reportElement x="232" y="0" width="100" height="12" uuid="32ee94bf-95fb-4dad-a9d8-a137b39157bd"/>
 				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA[$F{FECHA_INICIAL}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="351" y="0" width="16" height="12" uuid="6156ebf6-1d42-465a-8833-5e53b60dd619"/>
+				<reportElement x="344" y="0" width="16" height="12" uuid="6156ebf6-1d42-465a-8833-5e53b60dd619"/>
 				<textElement textAlignment="Center">
 					<font size="9" isBold="false" isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[al]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="389" y="0" width="100" height="12" uuid="40fa3b8b-ace1-450a-b36e-6d6e3f3ebcd5"/>
+				<reportElement x="367" y="0" width="100" height="12" uuid="40fa3b8b-ace1-450a-b36e-6d6e3f3ebcd5"/>
 				<textFieldExpression><![CDATA[$F{FECHA_FINAL}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement x="209" y="0" width="16" height="12" uuid="154d05b9-7dac-4a07-898d-20effa2fc86e"/>
+				<textElement textAlignment="Center">
+					<font size="9" isBold="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[del]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="12"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<subreport>
+				<reportElement x="0" y="0" width="200" height="36" uuid="ee0871d0-070f-4406-80bd-4319178a0f58"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "SubRptMorosidadClientes.jasper"]]></subreportExpression>
+			</subreport>
 		</band>
 	</columnHeader>
 	<detail>

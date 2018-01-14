@@ -5,6 +5,12 @@
 <%@page import="java.io.BufferedInputStream"%>
 <%@page import="com.reportes.superjasper.SuperTotales"%>
 <%
+    
+    /*
+    Acceso:
+    javascript:var x=window.open('localhost:9001/apex_excel_disme/super_morosidad.jsp?usuario=&APP_USER.','_blank');
+    http://localhost:9001/apex_excel_disme/super_morosidad.jsp?usuario=dismemayor
+    */
     if (request.getParameter("usuario") == null || request.getParameter("usuario") == "") {
         out.println("Es necesario el parámetro usuario");
         return;

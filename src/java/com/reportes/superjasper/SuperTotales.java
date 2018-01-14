@@ -58,8 +58,7 @@ public class SuperTotales {
         }
 
         Map parametro = new HashMap();
-        parametro.put("UNANIO", "2017");
-        parametro.put("UNMESINICIO", "1");
+        parametro.put("P_USUARIO", this.usuario.toUpperCase());       
 
         try {
             JasperPrint jp = JasperFillManager.fillReport(masterReport, parametro, conn);

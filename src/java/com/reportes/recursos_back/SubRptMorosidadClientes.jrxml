@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="555" pageHeight="802" columnWidth="535" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="761bc8fb-0906-42a9-869e-cb8e4b87c913">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT * FROM GNR_DATOS_GENERALES]]>
+	</queryString>
+	<field name="COD_EMPRESA" class="java.lang.String"/>
+	<field name="DIRECCION" class="java.lang.String"/>
+	<field name="PROVINCIA" class="java.lang.String"/>
+	<field name="CIUDAD" class="java.lang.String"/>
+	<field name="CANTON" class="java.lang.String"/>
+	<field name="CALLE" class="java.lang.String"/>
+	<field name="NUMERO" class="java.math.BigDecimal"/>
+	<field name="TELEFONO" class="java.lang.String"/>
+	<field name="NUM_PATRONAL" class="java.lang.String"/>
+	<field name="RUC" class="java.lang.String"/>
+	<field name="GERENTE" class="java.lang.String"/>
+	<field name="CI_GERENTE" class="java.lang.String"/>
+	<field name="CONTADOR" class="java.lang.String"/>
+	<field name="CI_CONTADOR" class="java.lang.String"/>
+	<field name="JEF_PERSONAL" class="java.lang.String"/>
+	<field name="CI_JEF_PERS" class="java.lang.String"/>
+	<field name="TITULO1" class="java.lang.String"/>
+	<field name="TITULO2" class="java.lang.String"/>
+	<field name="TITULO3" class="java.lang.String"/>
+	<field name="TITULO4" class="java.lang.String"/>
+	<field name="TITULO5" class="java.lang.String"/>
+	<field name="TITULO6" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="18" uuid="a6a7eb06-a860-4e55-a912-6dec7226cee8"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TITULO4}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
