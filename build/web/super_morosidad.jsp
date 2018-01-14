@@ -1,64 +1,22 @@
-<%@page import="java.sql.Connection"%>
-<%@page import="com.propiedades.MotorConfiguracion"%>
-<%@page import="java.io.FileOutputStream"%>
-<%@page import="net.sf.jasperreports.engine.JasperExportManager"%>
-<%@page import="net.sf.jasperreports.view.JasperViewer"%>
-<%@page import="net.sf.jasperreports.engine.JasperFillManager"%>
-<%@page import="net.sf.jasperreports.engine.JasperPrint"%>
-<%@page import="java.util.Map"%>
-<%@page import="java.util.HashMap"%>
-<%@page import="net.sf.jasperreports.engine.util.JRLoader"%>
-<%@page import="net.sf.jasperreports.engine.JasperReport"%>
-<%@page import="net.sf.jasperreports.engine.JRException"%>
 <%@page import="java.io.IOException"%>
 <%@page import="java.io.OutputStream"%>
 <%@page import="java.io.FileNotFoundException"%>
-<%@page import="java.io.BufferedInputStream"%>
 <%@page import="java.io.File"%>
-<%@page import="com.db.DataBaseConnection"%>
-
-
+<%@page import="java.io.BufferedInputStream"%>
+<%@page import="com.reportes.superjasper.SuperTotales"%>
 <%
     if (request.getParameter("usuario") == null || request.getParameter("usuario") == "") {
         out.println("Es necesario el parámetro usuario");
         return;
     }
 
-    MotorConfiguracion configMotor = new MotorConfiguracion();
-    DataBaseConnection oc = new DataBaseConnection();
-    Connection conn;
-    conn = oc.getConnection(configMotor.getHost(), configMotor.getPuerto(), configMotor.getServicio(), configMotor.getUsuario(), configMotor.getClave());
+    String usuario = request.getParameter("usuario");
+    String txtFileNameVariable;
 
-    String archivo = "/data/git/apex_excel/src/java/com/reportes/recursos/RptMorosidadClientes.jasper";
-    System.out.println("Archivo cargado desde :" + archivo);
-    JasperReport masterReport = null;
+    SuperTotales supertotales = new SuperTotales(usuario);
+    txtFileNameVariable = supertotales.reporteTotal();
 
     try {
-        masterReport = (JasperReport) JRLoader.loadObjectFromFile(archivo);
-    } catch (JRException ex) {
-        out.println("Error al cargar el archivo de reporte" + ex.getMessage());
-    }
-
-    Map parametro = new HashMap();
-    parametro.put("UNANIO", "2017");
-    parametro.put("UNMESINICIO", "1");
-
-    try {
-        JasperPrint jp = JasperFillManager.fillReport(masterReport, parametro, conn);
-        OutputStream output = new FileOutputStream(
-                new File(
-                        System.getProperty("java.io.tmpdir")
-                        + File.separatorChar
-                        + "jasper.pdf"));
-        JasperExportManager.exportReportToPdfStream(jp, output);
-        output.close();
-
-    } catch (JRException ex) {
-        out.println("Error en el reporte" + ex.getMessage());
-    }
-
-    try {
-        String txtFileNameVariable = "jasper.pdf";
         String locationVariable = System.getProperty("java.io.tmpdir") + File.separatorChar;
         String PathVariable = "";
 

@@ -16,6 +16,7 @@
  */
 package com.propiedades;
 
+import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.commons.configuration.ConfigurationException;
@@ -33,6 +34,7 @@ public class General {
 
     public General() {
         try {
+            crearDirectorio();
             PropertiesConfiguration config = new PropertiesConfiguration("./quijotelu/General.properties");
             if (config.getProperty("general.BaseDatos") == null) {
                 /*
@@ -41,7 +43,7 @@ public class General {
                  */
                 config.setProperty("general.BaseDatos", "oracle");
                 config.save();
-            }         
+            }
             if (config.getProperty("general.Publicidad") == null) {
                 config.setProperty("general.Publicidad", "si");
                 config.save();
@@ -53,9 +55,27 @@ public class General {
             BaseDatos = (String) config.getProperty("general.BaseDatos");
             Publicidad = (String) config.getProperty("general.Publicidad");
             Nombre = (String) config.getProperty("general.Nombre");
-            
+
         } catch (ConfigurationException ex) {
             Logger.getLogger(General.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    void crearDirectorio() {
+        File theDir = new File("quijotelu");
+        if (!theDir.exists()) {
+            System.out.println("creating directory: " + theDir.getName());
+            boolean result = false;
+
+            try {
+                theDir.mkdir();
+                result = true;
+            } catch (SecurityException se) {
+                System.out.println("Error al crear el directorio " + se.getMessage());
+            }
+            if (result) {
+                System.out.println("DIR created");
+            }
         }
     }
 
