@@ -74,7 +74,7 @@ public class DataBaseConnection {
 
     public static void main(String[] args) throws SQLException{
         DataBaseConnection dbc = new DataBaseConnection();
-        //Connection conn = dbc.sqlserverConnection("192.168.1.121", "1433", "bdquality", "quality", "Horiz0ns__");
+        //Connection conn = dbc.sqlserverConnection("127.0.0.1", "1433", "master", "sa", "sa");
         Connection conn = dbc.getConnection("127.0.0.1", "1521", "xe", "dismemayor", "d");
         conn.close();
     }

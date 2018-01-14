@@ -9,16 +9,15 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Reportes Apex - Excel</title>
+        <title>Reportes Apex</title>
     </head>
     <body>
-        <h2>Reportes Apex - Excel</h2>
-        <form method="get" action="success.jsp">
+        <h2>Reportes Apex</h2>
+        <form method="get" action="super_morosidad.jsp">
             <p>
-                <input type="text" value=""/>
+                <input type="text" name="usuario" value=""/>
             <p>
-                <input type="submit" value="Create" 
-                       onclick="document.location = 'success.jsp';"/>
+                <input type="submit" value="Generar reporte morosidad"/>
             </p>
         </form>
     </body>

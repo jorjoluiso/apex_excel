@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="896264c7-2568-41e8-a656-ff3dcff9cfae">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="style1" backcolor="#33CCFF" fontSize="10"/>
+	<parameter name="UNANIO" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="UNMESINICIO" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["/data/git/apex_excel/src/java/com/reportes/recursos/"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select DISTINCT TO_CHAR(FECHA_CREACION,'yyyy') AS ANIO,
+       TO_CHAR(FECHA_CREACION,'MM') AS MES
+       from CXC_CLIENTE WHERE TO_CHAR(FECHA_CREACION,'yyyy')=$P!{UNANIO} AND TO_CHAR(FECHA_CREACION,'MM')=$P!{UNMESINICIO}]]>
+	</queryString>
+	<field name="ANIO" class="java.lang.String"/>
+	<field name="MES" class="java.lang.String"/>
+	<background>
+		<band height="419">
+			<subreport>
+				<reportElement positionType="Float" x="0" y="37" width="200" height="75" uuid="6143f148-fd7a-4d05-ae21-d4b6f74c5fd5"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "SubRptMC4MorosidadDeLaCartera.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement positionType="Float" x="0" y="115" width="200" height="100" uuid="1dc43a34-5203-43bc-8e23-28429099b01e"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "SubRptMC5MorosidadAcumulada.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement positionType="Float" x="0" y="216" width="200" height="100" uuid="f645612d-c383-44b2-9fde-5fc7c18d2399"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "SubRptMC6CostosAlDeudor.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement positionType="Float" x="0" y="317" width="200" height="100" uuid="a2bebd4e-610f-411f-8a9c-b2a7738e5329"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "SubRptMC7RecargoDeCobranza.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="0" y="0" width="200" height="25" uuid="d6ac7447-ef01-421a-9f2c-068a4864b276"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "subRptHoja.jasper"]]></subreportExpression>
+			</subreport>
+			<break>
+				<reportElement x="0" y="31" width="100" height="1" uuid="dc7d1bea-dfb0-4fb4-98ad-b6af37f628e0"/>
+			</break>
+		</band>
+	</background>
+	<title>
+		<band height="12">
+			<staticText>
+				<reportElement x="216" y="0" width="100" height="12" uuid="d5045f2c-e847-4e26-a2b8-451afdd0ae49"/>
+				<textElement>
+					<font size="9" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[PERIODO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="style1" x="320" y="0" width="100" height="12" backcolor="#3399FF" uuid="c56aa8e9-b699-4518-9606-db96728971f0"/>
+				<textElement markup="styled">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ANIO]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="12">
+			<textField>
+				<reportElement x="216" y="0" width="100" height="12" uuid="fa0d0faf-104a-44a3-acac-62b1d1c7e3f0"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{UNMESINICIO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="320" y="0" width="100" height="12" uuid="b628513d-2cb2-4a82-bb84-f4eb4ba85d61"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ANIO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<subreport>
+				<reportElement x="0" y="0" width="200" height="36" uuid="ee0871d0-070f-4406-80bd-4319178a0f58"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "SubRptMorosidadClientes.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="39" splitType="Stretch">
+			<subreport>
+				<reportElement x="0" y="1" width="200" height="38" uuid="41caf7ac-9967-44cc-b554-ae62c1eb3276"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "SubRptMC1MontoTrimestral.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<summary>
+		<band height="212" splitType="Stretch">
+			<subreport>
+				<reportElement x="0" y="1" width="200" height="100" uuid="bb25cb57-0290-47de-9e4e-fcacb0cc4dfd"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "SubRptMC2DatosCredito.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement positionType="Float" x="0" y="105" width="200" height="100" uuid="b72800b5-a970-487c-823d-61acdb1ac7be"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "subRptMC3InteresFinanciamiento.jasper"]]></subreportExpression>
+			</subreport>
+			<break>
+				<reportElement x="0" y="208" width="100" height="1" uuid="25e7c39b-5eb6-405b-ada9-8d658c536981"/>
+			</break>
+		</band>
+	</summary>
+</jasperReport>
