@@ -13,8 +13,8 @@ whenever sqlerror exit sql.sqlcode rollback
 begin
 wwv_flow_api.import_begin (
  p_version_yyyy_mm_dd=>'2016.08.24'
-,p_release=>'5.1.1.00.08'
-,p_default_workspace_id=>2940377243342634
+,p_release=>'5.1.3.00.05'
+,p_default_workspace_id=>2951841925480806
 ,p_default_application_id=>100
 ,p_default_owner=>'DISMEMAYOR'
 );
@@ -27,12 +27,12 @@ prompt APPLICATION 100 - Reportes
 -- Application Export:
 --   Application:     100
 --   Name:            Reportes
---   Date and Time:   22:17 Miércoles Septiembre 27, 2017
+--   Date and Time:   05:03 Viernes Octubre 13, 2017
 --   Exported By:     ADMIN
 --   Flashback:       0
 --   Export Type:     Application Export
---   Version:         5.1.1.00.08
---   Instance ID:     218273448253930
+--   Version:         5.1.3.00.05
+--   Instance ID:     218265167336062
 --
 
 -- Application Statistics:
@@ -40,7 +40,7 @@ prompt APPLICATION 100 - Reportes
 --     Items:                   33
 --     Processes:               15
 --     Regions:                 33
---     Buttons:                  5
+--     Buttons:                  6
 --     Dynamic Actions:          1
 --   Shared Components:
 --     Logic:
@@ -109,7 +109,7 @@ wwv_flow_api.create_flow(
 ,p_csv_encoding=>'Y'
 ,p_auto_time_zone=>'N'
 ,p_last_updated_by=>'ADMIN'
-,p_last_upd_yyyymmddhh24miss=>'20170720102602'
+,p_last_upd_yyyymmddhh24miss=>'20171013044351'
 ,p_file_prefix => nvl(wwv_flow_application_install.get_static_app_file_prefix,'')
 ,p_ui_type_name => null
 );
@@ -10758,7 +10758,7 @@ wwv_flow_api.create_page(
 ,p_cache_mode=>'NOCACHE'
 ,p_help_text=>'No hay ayuda disponible para esta página.'
 ,p_last_updated_by=>'ADMIN'
-,p_last_upd_yyyymmddhh24miss=>'20170720102602'
+,p_last_upd_yyyymmddhh24miss=>'20171013044351'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(5821845541241830)
@@ -11366,6 +11366,19 @@ wwv_flow_api.create_report_columns(
 ,p_lov_show_nulls=>'YES'
 ,p_lov_display_extra=>'YES'
 ,p_include_in_export=>'Y'
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(2958647319122602)
+,p_button_sequence=>10
+,p_button_plug_id=>wwv_flow_api.id(5853857055714374)
+,p_button_name=>'Excel'
+,p_button_action=>'REDIRECT_URL'
+,p_button_template_options=>'#DEFAULT#:t-Button--large:t-Button--success:t-Button--simple'
+,p_button_template_id=>wwv_flow_api.id(28391212821237904)
+,p_button_image_alt=>'Excel'
+,p_button_position=>'REGION_TEMPLATE_CLOSE'
+,p_button_redirect_url=>'http://ryzen:8080/apex_excel/success.jsp?usuario=&APP_USER.'
+,p_button_execute_validations=>'N'
 );
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(5973967975474744)
