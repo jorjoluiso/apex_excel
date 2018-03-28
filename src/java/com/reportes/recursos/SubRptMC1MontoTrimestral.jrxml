@@ -28,16 +28,10 @@
 	</style>
 	<subDataset name="Table Dataset 1" uuid="bc9ac577-5535-491a-83e0-84820e5f902b"/>
 	<queryString>
-		<![CDATA[SELECT ORDEN,DESCRIPCION,ABONO,EXPRESADO,MORA_31_60,MORA_HASTA_30,MORA_MAS_61,NO_VENCIDO,SALDO,VALOR FROM V_SUPER_TOTALES WHERE ABONO <=120 ORDER BY ORDEN ASC]]>
+		<![CDATA[SELECT 'Hola' DESCRIPCION, 0 ABONO,0 SALDO,0 VALOR FROM DUAL]]>
 	</queryString>
-	<field name="ORDEN" class="java.math.BigDecimal"/>
 	<field name="DESCRIPCION" class="java.lang.String"/>
 	<field name="ABONO" class="java.math.BigDecimal"/>
-	<field name="EXPRESADO" class="java.lang.String"/>
-	<field name="MORA_31_60" class="java.math.BigDecimal"/>
-	<field name="MORA_HASTA_30" class="java.math.BigDecimal"/>
-	<field name="MORA_MAS_61" class="java.math.BigDecimal"/>
-	<field name="NO_VENCIDO" class="java.math.BigDecimal"/>
 	<field name="SALDO" class="java.math.BigDecimal"/>
 	<field name="VALOR" class="java.math.BigDecimal"/>
 	<summary>
