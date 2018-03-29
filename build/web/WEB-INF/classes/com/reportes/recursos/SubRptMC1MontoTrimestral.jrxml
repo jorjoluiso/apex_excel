@@ -28,18 +28,20 @@
 	</style>
 	<subDataset name="Table Dataset 1" uuid="bc9ac577-5535-491a-83e0-84820e5f902b"/>
 	<queryString>
-		<![CDATA[SELECT ORDEN,DESCRIPCION,ABONO,EXPRESADO,MORA_31_60,MORA_HASTA_30,MORA_MAS_61,NO_VENCIDO,SALDO,VALOR FROM V_SUPER_TOTALES WHERE ABONO <=120 ORDER BY ORDEN ASC]]>
+		<![CDATA[SELECT
+    round(SUM(valor) - pkg_super.fun_totales_devoluciones - pkg_super.fun_totales_notas_credito,2) AS ventas_credito,
+    pkg_super.fun_totales_ventas_contado('FAC') AS ventas_contado,
+0 AS saldo,
+0 as valor,
+'' as descripcion
+FROM
+    v_super_morosidades]]>
 	</queryString>
-	<field name="ORDEN" class="java.math.BigDecimal"/>
-	<field name="DESCRIPCION" class="java.lang.String"/>
-	<field name="ABONO" class="java.math.BigDecimal"/>
-	<field name="EXPRESADO" class="java.lang.String"/>
-	<field name="MORA_31_60" class="java.math.BigDecimal"/>
-	<field name="MORA_HASTA_30" class="java.math.BigDecimal"/>
-	<field name="MORA_MAS_61" class="java.math.BigDecimal"/>
-	<field name="NO_VENCIDO" class="java.math.BigDecimal"/>
+	<field name="VENTAS_CREDITO" class="java.math.BigDecimal"/>
+	<field name="VENTAS_CONTADO" class="java.math.BigDecimal"/>
 	<field name="SALDO" class="java.math.BigDecimal"/>
 	<field name="VALOR" class="java.math.BigDecimal"/>
+	<field name="DESCRIPCION" class="java.lang.String"/>
 	<summary>
 		<band height="307" splitType="Stretch">
 			<frame>
@@ -134,7 +136,7 @@
 				<reportElement x="0" y="129" width="350" height="16" forecolor="#FFFFFF" uuid="5e50932c-1387-42eb-9384-de6a63e3930c"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="149" y="131" width="200" height="14" uuid="20730b81-ff51-4ba3-af73-16a6b770efca"/>
+				<reportElement x="142" y="131" width="200" height="14" uuid="20730b81-ff51-4ba3-af73-16a6b770efca"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="9" isBold="false"/>
 				</textElement>
@@ -144,20 +146,20 @@
 				<reportElement x="0" y="147" width="350" height="16" forecolor="#FFFFFF" uuid="0cf38063-c33a-4c64-95f0-6d4a251cc038"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="150" y="149" width="200" height="14" forecolor="#000000" uuid="f786baca-135a-4e0d-9255-100330954e4b"/>
+				<reportElement x="143" y="149" width="200" height="14" forecolor="#000000" uuid="f786baca-135a-4e0d-9255-100330954e4b"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="9" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Ventas a Credito :]]></text>
 			</staticText>
 			<rectangle>
-				<reportElement x="0" y="202" width="455" height="16" uuid="00b3258a-ed8d-4bfe-b7ac-3d9bdf2ac933"/>
+				<reportElement x="0" y="202" width="345" height="16" uuid="00b3258a-ed8d-4bfe-b7ac-3d9bdf2ac933"/>
 				<graphicElement>
 					<pen lineWidth="0.25"/>
 				</graphicElement>
 			</rectangle>
 			<staticText>
-				<reportElement x="352" y="203" width="100" height="14" uuid="0ef1a906-5607-4bc5-a0f4-091e32f3afb1"/>
+				<reportElement x="245" y="203" width="100" height="14" uuid="0ef1a906-5607-4bc5-a0f4-091e32f3afb1"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="9" isBold="true"/>
 				</textElement>
@@ -170,7 +172,7 @@
 				<reportElement x="350" y="147" width="105" height="16" forecolor="#CCCC00" backcolor="#CCCC00" uuid="e2f8d658-0bc3-4f43-a89d-747c9ca3eaaa"/>
 			</rectangle>
 			<rectangle>
-				<reportElement x="458" y="201" width="95" height="16" forecolor="#999900" backcolor="#999900" uuid="92661ed4-92b5-4784-8f47-11914d61e901"/>
+				<reportElement x="350" y="201" width="106" height="16" forecolor="#999900" backcolor="#999900" uuid="92661ed4-92b5-4784-8f47-11914d61e901"/>
 			</rectangle>
 			<rectangle>
 				<reportElement x="0" y="165" width="555" height="16" uuid="936c4b67-a8cd-40c8-b773-0b61da29ea74"/>
@@ -189,7 +191,7 @@
 				<reportElement x="0" y="185" width="350" height="16" forecolor="#FFFFFF" uuid="3d9292b1-502f-43d7-92aa-94beae2a517d"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="147" y="185" width="200" height="14" uuid="a82b5346-7359-4f70-b9c1-0918fff35d94"/>
+				<reportElement x="145" y="185" width="200" height="14" uuid="a82b5346-7359-4f70-b9c1-0918fff35d94"/>
 				<textElement textAlignment="Right">
 					<font size="9" isBold="false"/>
 				</textElement>
@@ -232,61 +234,54 @@
 			</staticText>
 			<textField>
 				<reportElement x="354" y="40" width="91" height="14" uuid="cdbcce95-dc3c-4bee-92a0-e02189b7a5c0"/>
-				<textElement>
+				<textElement textAlignment="Right">
 					<font size="9"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{SALDO}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="356" y="58" width="89" height="14" uuid="3159cf2a-ae95-4f3c-9b08-24d1e73868f1"/>
-				<textElement>
+				<textElement textAlignment="Right">
 					<font size="9"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{SALDO}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="461" y="75" width="80" height="14" uuid="b698dd5a-6269-44eb-9f8e-2c052f9f20e6"/>
-				<textElement verticalAlignment="Middle">
+				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="9" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{VALOR}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="354" y="132" width="80" height="14" uuid="33c847ed-7e97-48b0-9334-7d3b9141b7dd"/>
-				<textElement>
+				<reportElement x="369" y="150" width="80" height="14" uuid="91c295c2-a35d-4a25-95b2-75c9d858bb5d"/>
+				<textElement textAlignment="Right">
 					<font size="9"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{ABONO}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{VENTAS_CREDITO}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="353" y="150" width="80" height="14" uuid="91c295c2-a35d-4a25-95b2-75c9d858bb5d"/>
-				<textElement>
+				<reportElement x="371" y="186" width="80" height="14" uuid="6ad9e727-0493-4b52-9444-060d4366b696"/>
+				<textElement textAlignment="Right">
 					<font size="9"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{ABONO}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{VENTAS_CONTADO}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="354" y="186" width="80" height="14" uuid="6ad9e727-0493-4b52-9444-060d4366b696"/>
-				<textElement>
-					<font size="9"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{ABONO}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="457" y="204" width="80" height="14" uuid="bb92d758-4cf5-4418-8963-8e5450ea6cf9"/>
-				<textElement>
+				<reportElement x="372" y="204" width="80" height="14" uuid="bb92d758-4cf5-4418-8963-8e5450ea6cf9"/>
+				<textElement textAlignment="Right">
 					<font size="9" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{SALDO}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{VENTAS_CREDITO}.add( $F{VENTAS_CONTADO} )]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="2" y="242" width="100" height="14" uuid="f6ef3747-567c-483e-a8c3-38abbaedc254"/>
 				<textElement>
 					<font size="9"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{DESCRIPCION}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="3" y="280" width="100" height="14" uuid="5df6db93-d3e3-4ef3-b170-4172c557996f"/>
 				<textElement>
 					<font size="9"/>

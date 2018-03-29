@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="896264c7-2568-41e8-a656-ff3dcff9cfae">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="144"/>
+	<property name="ireport.y" value="0"/>
 	<style name="style1" backcolor="#33CCFF" fontSize="10"/>
 	<parameter name="P_USUARIO" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
@@ -23,28 +23,23 @@ WHERE USUARIO=$P{P_USUARIO}]]>
 	<background>
 		<band height="624">
 			<subreport>
-				<reportElement positionType="Float" x="0" y="268" width="200" height="75" uuid="6143f148-fd7a-4d05-ae21-d4b6f74c5fd5"/>
+				<reportElement positionType="Float" x="0" y="121" width="200" height="75" uuid="6143f148-fd7a-4d05-ae21-d4b6f74c5fd5"/>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "SubRptMC4MorosidadDeLaCartera.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport>
-				<reportElement positionType="Float" x="0" y="357" width="200" height="100" uuid="1dc43a34-5203-43bc-8e23-28429099b01e"/>
+				<reportElement positionType="Float" x="0" y="261" width="200" height="100" uuid="1dc43a34-5203-43bc-8e23-28429099b01e"/>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "SubRptMC5MorosidadAcumulada.jasper"]]></subreportExpression>
-			</subreport>
-			<subreport>
-				<reportElement positionType="Float" x="0" y="467" width="200" height="100" uuid="f645612d-c383-44b2-9fde-5fc7c18d2399"/>
-				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "SubRptMC6CostosAlDeudor.jasper"]]></subreportExpression>
-			</subreport>
-			<subreport>
-				<reportElement x="0" y="208" width="200" height="25" uuid="d6ac7447-ef01-421a-9f2c-068a4864b276"/>
-				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "subRptHoja.jasper"]]></subreportExpression>
 			</subreport>
 			<break>
 				<reportElement x="0" y="31" width="100" height="1" uuid="dc7d1bea-dfb0-4fb4-98ad-b6af37f628e0"/>
 			</break>
+			<subreport>
+				<reportElement x="0" y="50" width="200" height="25" uuid="d6ac7447-ef01-421a-9f2c-068a4864b276"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "subRptHoja.jasper"]]></subreportExpression>
+			</subreport>
 		</band>
 	</background>
 	<title>
@@ -89,24 +84,24 @@ WHERE USUARIO=$P{P_USUARIO}]]>
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="122" splitType="Stretch">
+		<band height="67" splitType="Stretch">
 			<subreport>
-				<reportElement x="0" y="16" width="200" height="38" uuid="41caf7ac-9967-44cc-b554-ae62c1eb3276"/>
+				<reportElement x="0" y="14" width="200" height="38" uuid="41caf7ac-9967-44cc-b554-ae62c1eb3276"/>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "SubRptMC1MontoTrimestral.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 	</columnHeader>
 	<summary>
-		<band height="212" splitType="Stretch">
-			<break>
-				<reportElement x="0" y="208" width="100" height="1" uuid="25e7c39b-5eb6-405b-ada9-8d658c536981"/>
-			</break>
+		<band height="128" splitType="Stretch">
 			<subreport>
-				<reportElement x="7" y="25" width="200" height="52" uuid="bb25cb57-0290-47de-9e4e-fcacb0cc4dfd"/>
+				<reportElement x="0" y="13" width="200" height="52" uuid="bb25cb57-0290-47de-9e4e-fcacb0cc4dfd"/>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "SubRptMC2DatosCredito.jasper"]]></subreportExpression>
 			</subreport>
+			<break>
+				<reportElement x="0" y="100" width="100" height="1" uuid="25e7c39b-5eb6-405b-ada9-8d658c536981"/>
+			</break>
 		</band>
 	</summary>
 </jasperReport>
