@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="555" pageHeight="802" columnWidth="535" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="bc95c241-5dd8-4c65-af67-758535b42ceb">
 	<property name="ireport.zoom" value="2.0"/>
-	<property name="ireport.x" value="249"/>
+	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<queryString>
-		<![CDATA[SELECT 1 AS A21, 2 AS A22, 3 as b21, 4 as b22, 5 as c21, 6 as c22, 7 as d21, 8 as d22 , 9 as e21, 10 as e22 FROM DUAL]]>
+		<![CDATA[SELECT 0 AS COSTO, 60 as DIAS, round(SUM(valor) - pkg_super.fun_totales_devoluciones - pkg_super.fun_totales_notas_credito,2) AS ventas_credito,
+    pkg_super.fun_count_cliente_credito AS clientes_credito,
+    pkg_super.fun_count_operaciones AS operaciones_credito
+FROM
+    v_super_morosidades]]>
 	</queryString>
-	<field name="A21" class="java.math.BigDecimal"/>
-	<field name="A22" class="java.math.BigDecimal"/>
-	<field name="B21" class="java.math.BigDecimal"/>
-	<field name="B22" class="java.math.BigDecimal"/>
-	<field name="C21" class="java.math.BigDecimal"/>
-	<field name="C22" class="java.math.BigDecimal"/>
-	<field name="D21" class="java.math.BigDecimal"/>
-	<field name="D22" class="java.math.BigDecimal"/>
-	<field name="E21" class="java.math.BigDecimal"/>
-	<field name="E22" class="java.math.BigDecimal"/>
+	<field name="COSTO" class="java.math.BigDecimal"/>
+	<field name="DIAS" class="java.math.BigDecimal"/>
+	<field name="VENTAS_CREDITO" class="java.math.BigDecimal"/>
+	<field name="CLIENTES_CREDITO" class="java.math.BigDecimal"/>
+	<field name="OPERACIONES_CREDITO" class="java.math.BigDecimal"/>
 	<detail>
 		<band height="151" splitType="Stretch">
 			<frame>
@@ -40,7 +39,7 @@
 				<staticText>
 					<reportElement x="2" y="2" width="180" height="16" uuid="b7643a5d-6352-4a0d-bc02-624192b156b7"/>
 					<textElement verticalAlignment="Middle">
-						<font size="8"/>
+						<font size="7"/>
 					</textElement>
 					<text><![CDATA[COSTO EFECTIVO ANUAL (TASA)]]></text>
 				</staticText>
@@ -50,7 +49,7 @@
 				<textField>
 					<reportElement x="3" y="2" width="52" height="16" uuid="c14163fb-f373-4844-a3fd-ce576f697460"/>
 					<textElement textAlignment="Right"/>
-					<textFieldExpression><![CDATA[$F{A21}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{COSTO}]]></textFieldExpression>
 				</textField>
 			</frame>
 			<frame>
@@ -61,13 +60,13 @@
 				<textField>
 					<reportElement x="5" y="2" width="50" height="16" uuid="775c5ea1-9ed7-46df-8b5f-111d60c47d6c"/>
 					<textElement textAlignment="Right"/>
-					<textFieldExpression><![CDATA[$F{A22}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{COSTO}]]></textFieldExpression>
 				</textField>
 			</frame>
 			<staticText>
 				<reportElement x="281" y="23" width="180" height="16" uuid="dba42501-2776-401e-aeca-d9d57ab6978b"/>
 				<textElement verticalAlignment="Middle">
-					<font size="8"/>
+					<font size="7"/>
 				</textElement>
 				<text><![CDATA[COSTO NOMINAL ANUAL (TASA)]]></text>
 			</staticText>
@@ -76,7 +75,7 @@
 				<staticText>
 					<reportElement x="0" y="0" width="180" height="20" uuid="299ca1cc-800a-47e7-867e-fa2f1a033bc7"/>
 					<textElement verticalAlignment="Middle">
-						<font size="8"/>
+						<font size="7"/>
 					</textElement>
 					<text><![CDATA[Nº TOTAL DE CLIENTES CON OPERACIONES DE CRÉDITO ACTIVAS DEL PERIODO]]></text>
 				</staticText>
@@ -86,7 +85,7 @@
 				<staticText>
 					<reportElement x="0" y="0" width="180" height="20" uuid="65fd0f06-1001-4b81-9178-3126ffb8b616"/>
 					<textElement verticalAlignment="Middle">
-						<font size="8"/>
+						<font size="7"/>
 					</textElement>
 					<text><![CDATA[Nº TOTAL DE OPERACIONES DE CRÉDITO ACTIVAS AL PERIODO]]></text>
 				</staticText>
@@ -96,7 +95,7 @@
 				<textField>
 					<reportElement x="3" y="0" width="52" height="16" uuid="97bef313-3629-4c60-acbe-cb65ae4586d3"/>
 					<textElement textAlignment="Right"/>
-					<textFieldExpression><![CDATA[$F{B21}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{CLIENTES_CREDITO}]]></textFieldExpression>
 				</textField>
 			</frame>
 			<frame>
@@ -104,7 +103,7 @@
 				<textField>
 					<reportElement x="5" y="0" width="50" height="16" uuid="6e94e82e-ac29-4570-bc4c-3e24d84a5013"/>
 					<textElement textAlignment="Right"/>
-					<textFieldExpression><![CDATA[$F{B22}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{CLIENTES_CREDITO}]]></textFieldExpression>
 				</textField>
 			</frame>
 			<frame>
@@ -113,7 +112,7 @@
 			<staticText>
 				<reportElement x="283" y="43" width="180" height="20" uuid="8c084ba5-5fa1-4c58-aa26-27109c3ffbf2"/>
 				<textElement verticalAlignment="Middle">
-					<font size="8"/>
+					<font size="7"/>
 				</textElement>
 				<text><![CDATA[Nº TOTAL DE CLIENTES CON OPERACIONES DE CRÉDITO ACTIVAS A LA FECHA ACUMULADO]]></text>
 			</staticText>
@@ -122,7 +121,7 @@
 				<textField>
 					<reportElement x="3" y="0" width="52" height="16" uuid="0fdda85d-e939-4aee-bf5a-14e92abc0b72"/>
 					<textElement textAlignment="Right"/>
-					<textFieldExpression><![CDATA[$F{C21}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{OPERACIONES_CREDITO}]]></textFieldExpression>
 				</textField>
 			</frame>
 			<frame>
@@ -133,13 +132,13 @@
 				<textField>
 					<reportElement x="5" y="1" width="50" height="16" uuid="e9e42f87-8402-44e1-8b27-af1471fe0cfc"/>
 					<textElement textAlignment="Right"/>
-					<textFieldExpression><![CDATA[$F{C22}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{OPERACIONES_CREDITO}]]></textFieldExpression>
 				</textField>
 			</frame>
 			<staticText>
 				<reportElement x="283" y="64" width="180" height="20" uuid="08906db2-306d-4110-9afe-7f8f1015bc92"/>
 				<textElement verticalAlignment="Middle">
-					<font size="8"/>
+					<font size="7"/>
 				</textElement>
 				<text><![CDATA[Nº TOTAL DE OPERACIONES DE CRÉDITO ACTIVAS A LA FECHA ACUMULADO]]></text>
 			</staticText>
@@ -148,7 +147,7 @@
 				<staticText>
 					<reportElement x="0" y="0" width="180" height="20" uuid="5e75e3f9-1db2-4f94-849b-da8b74b224de"/>
 					<textElement verticalAlignment="Middle">
-						<font size="8"/>
+						<font size="7"/>
 					</textElement>
 					<text><![CDATA[PLAZO PROMEDIO CUENTAS POR COBRAR (DÍAS)]]></text>
 				</staticText>
@@ -158,7 +157,7 @@
 				<textField>
 					<reportElement x="3" y="1" width="52" height="16" uuid="f5430cac-7f04-4115-83d5-374c76372bf1"/>
 					<textElement textAlignment="Right"/>
-					<textFieldExpression><![CDATA[$F{D21}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{DIAS}]]></textFieldExpression>
 				</textField>
 			</frame>
 			<frame>
@@ -167,7 +166,7 @@
 			<staticText>
 				<reportElement x="284" y="84" width="180" height="20" uuid="667d8e46-332e-41a9-800c-bb52d8b6019c"/>
 				<textElement verticalAlignment="Middle">
-					<font size="8"/>
+					<font size="7"/>
 				</textElement>
 				<text><![CDATA[PLAZO MÁXIMO CUENTAS POR COBRAR]]></text>
 			</staticText>
@@ -176,7 +175,7 @@
 				<textField>
 					<reportElement x="5" y="3" width="50" height="16" uuid="b431bde4-1705-4dce-aa8a-25b9a1b96815"/>
 					<textElement textAlignment="Right"/>
-					<textFieldExpression><![CDATA[$F{D22}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{DIAS}]]></textFieldExpression>
 				</textField>
 			</frame>
 			<frame>
@@ -184,7 +183,7 @@
 				<staticText>
 					<reportElement x="0" y="0" width="180" height="20" uuid="9b993b09-1fac-479e-b531-1250e3086c86"/>
 					<textElement verticalAlignment="Middle">
-						<font size="8"/>
+						<font size="7"/>
 					</textElement>
 					<text><![CDATA[VALOR TOTAL CUENTAS POR COBRAR DEL PERIODO (VENTAS A CRÉDITO)]]></text>
 				</staticText>
@@ -194,7 +193,7 @@
 				<textField>
 					<reportElement x="3" y="2" width="52" height="16" uuid="621ef5f7-ef8e-495d-80c3-c951f74682a8"/>
 					<textElement textAlignment="Right"/>
-					<textFieldExpression><![CDATA[$F{E21}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{VENTAS_CREDITO}]]></textFieldExpression>
 				</textField>
 			</frame>
 			<frame>
@@ -203,7 +202,7 @@
 			<staticText>
 				<reportElement x="284" y="106" width="180" height="20" uuid="462d8b25-e980-4d84-aaa7-29bab9e69e09"/>
 				<textElement verticalAlignment="Middle">
-					<font size="8"/>
+					<font size="7"/>
 				</textElement>
 				<text><![CDATA[VALOR TOTAL CUENTAS POR COBRAR A LA FECHA ACUMULADO]]></text>
 			</staticText>
@@ -213,7 +212,7 @@
 			<textField>
 				<reportElement x="490" y="108" width="50" height="16" uuid="1555d1da-751d-46be-9ad3-581d21a18a60"/>
 				<textElement textAlignment="Right"/>
-				<textFieldExpression><![CDATA[$F{E22}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{VENTAS_CREDITO}]]></textFieldExpression>
 			</textField>
 			<frame>
 				<reportElement x="53" y="127" width="100" height="20" uuid="5f44e45f-fe9a-4a88-a1bb-e014633c642a"/>

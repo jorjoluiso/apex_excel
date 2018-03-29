@@ -47,8 +47,8 @@ FROM
 			<frame>
 				<reportElement mode="Opaque" x="0" y="0" width="555" height="18" forecolor="#000000" backcolor="#3366FF" uuid="c90486e4-2c84-4177-8c0d-4d268f4cba2c"/>
 				<staticText>
-					<reportElement x="397" y="2" width="156" height="16" forecolor="#FFFFFF" uuid="1261df28-ef00-461e-9471-a20b6bad1166"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
+					<reportElement x="378" y="2" width="156" height="16" forecolor="#FFFFFF" uuid="1261df28-ef00-461e-9471-a20b6bad1166"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font size="9" isBold="true"/>
 					</textElement>
 					<text><![CDATA[         MONTO TRIMESTRAL]]></text>
@@ -69,19 +69,12 @@ FROM
 			</staticText>
 			<frame>
 				<reportElement x="0" y="39" width="350" height="16" uuid="094de4bb-edd5-4f65-a582-85214df49b1b"/>
-				<staticText>
-					<reportElement x="148" y="0" width="200" height="14" uuid="6cc16afd-828f-4849-8bb1-706f79c54658"/>
-					<textElement textAlignment="Right" verticalAlignment="Middle">
-						<font size="9" isBold="false"/>
-					</textElement>
-					<text><![CDATA[Ingresos Operacionales :]]></text>
-				</staticText>
 			</frame>
 			<rectangle>
 				<reportElement x="0" y="54" width="350" height="18" forecolor="#FFFFFF" uuid="8f40b678-5252-441d-b552-420717e7afd6"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="98" y="57" width="250" height="14" uuid="1cc1a42a-d6f8-4420-9345-5f3e465de81a"/>
+				<reportElement x="92" y="58" width="250" height="14" uuid="1cc1a42a-d6f8-4420-9345-5f3e465de81a"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="9" isBold="false"/>
 				</textElement>
@@ -94,27 +87,27 @@ FROM
 				<reportElement x="350" y="56" width="105" height="16" forecolor="#CCCC00" backcolor="#CCCC00" uuid="7fcd4518-a496-4f55-a062-c141fe5d386f"/>
 			</rectangle>
 			<rectangle>
-				<reportElement x="0" y="74" width="455" height="16" uuid="3828a6a9-4000-4120-8303-ecaa59cebd98"/>
+				<reportElement x="0" y="74" width="345" height="16" uuid="3828a6a9-4000-4120-8303-ecaa59cebd98"/>
 				<graphicElement>
 					<pen lineWidth="0.25"/>
 				</graphicElement>
 			</rectangle>
 			<staticText>
-				<reportElement x="353" y="76" width="100" height="14" uuid="320eaac9-8ab3-4175-a7a4-eddf5a9facef"/>
+				<reportElement x="242" y="76" width="100" height="14" uuid="320eaac9-8ab3-4175-a7a4-eddf5a9facef"/>
 				<textElement textAlignment="Right">
 					<font size="9" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Totales :]]></text>
 			</staticText>
 			<rectangle>
-				<reportElement x="458" y="74" width="95" height="16" forecolor="#999900" backcolor="#999900" uuid="c974c565-2883-45b2-a67d-980240855b80"/>
+				<reportElement x="350" y="74" width="105" height="16" forecolor="#999900" backcolor="#999900" uuid="c974c565-2883-45b2-a67d-980240855b80"/>
 			</rectangle>
 			<rectangle>
 				<reportElement x="0" y="92" width="555" height="18" forecolor="#3366FF" backcolor="#3366FF" uuid="ed55ad0b-15cd-4ede-9334-09da8e0e41d9"/>
 			</rectangle>
 			<staticText>
-				<reportElement mode="Transparent" x="300" y="94" width="254" height="16" forecolor="#FFFFFF" uuid="c3ec8d22-459a-41ec-b81f-ff53f493ccc4"/>
-				<textElement verticalAlignment="Middle">
+				<reportElement mode="Transparent" x="280" y="95" width="254" height="16" forecolor="#FFFFFF" uuid="c3ec8d22-459a-41ec-b81f-ff53f493ccc4"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="9" isBold="true"/>
 				</textElement>
 				<text><![CDATA[      DETALLE DE LOS INGRESOS OPERACIONALES]]></text>
@@ -172,7 +165,7 @@ FROM
 				<reportElement x="350" y="147" width="105" height="16" forecolor="#CCCC00" backcolor="#CCCC00" uuid="e2f8d658-0bc3-4f43-a89d-747c9ca3eaaa"/>
 			</rectangle>
 			<rectangle>
-				<reportElement x="350" y="201" width="106" height="16" forecolor="#999900" backcolor="#999900" uuid="92661ed4-92b5-4784-8f47-11914d61e901"/>
+				<reportElement x="351" y="201" width="105" height="16" forecolor="#999900" backcolor="#999900" uuid="92661ed4-92b5-4784-8f47-11914d61e901"/>
 			</rectangle>
 			<rectangle>
 				<reportElement x="0" y="165" width="555" height="16" uuid="936c4b67-a8cd-40c8-b773-0b61da29ea74"/>
@@ -219,49 +212,49 @@ FROM
 				</graphicElement>
 			</rectangle>
 			<staticText>
-				<reportElement x="114" y="220" width="300" height="16" forecolor="#FFFFFF" uuid="7f1f7a71-a445-4901-ad7d-a8d3649a3d3b"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
+				<reportElement x="234" y="219" width="300" height="16" forecolor="#FFFFFF" uuid="7f1f7a71-a445-4901-ad7d-a8d3649a3d3b"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="9" isBold="true"/>
 				</textElement>
 				<text><![CDATA[ORIGEN DE LOS INGRESOS OPERACIONALES]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="100" y="259" width="345" height="16" forecolor="#FFFFFF" uuid="3db633ea-7b68-41f5-a796-d4c9e2302926"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
+				<reportElement x="189" y="257" width="345" height="16" forecolor="#FFFFFF" uuid="3db633ea-7b68-41f5-a796-d4c9e2302926"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="9" isBold="true"/>
 				</textElement>
 				<text><![CDATA[ORIGEN DE LOS INGRESOS NO OPERACIONALES]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="354" y="40" width="91" height="14" uuid="cdbcce95-dc3c-4bee-92a0-e02189b7a5c0"/>
+				<reportElement x="354" y="40" width="98" height="14" uuid="cdbcce95-dc3c-4bee-92a0-e02189b7a5c0"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{VENTAS_CREDITO}.add( $F{VENTAS_CONTADO} )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="356" y="58" width="96" height="14" uuid="3159cf2a-ae95-4f3c-9b08-24d1e73868f1"/>
 				<textElement textAlignment="Right">
 					<font size="9"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{SALDO}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="356" y="58" width="89" height="14" uuid="3159cf2a-ae95-4f3c-9b08-24d1e73868f1"/>
-				<textElement textAlignment="Right">
-					<font size="9"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{SALDO}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="461" y="75" width="80" height="14" uuid="b698dd5a-6269-44eb-9f8e-2c052f9f20e6"/>
+				<reportElement x="369" y="77" width="83" height="14" uuid="b698dd5a-6269-44eb-9f8e-2c052f9f20e6"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="9" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{VALOR}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{VENTAS_CREDITO}.add( $F{VENTAS_CONTADO} )]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="369" y="150" width="80" height="14" uuid="91c295c2-a35d-4a25-95b2-75c9d858bb5d"/>
+				<reportElement x="365" y="149" width="87" height="14" uuid="91c295c2-a35d-4a25-95b2-75c9d858bb5d"/>
 				<textElement textAlignment="Right">
 					<font size="9"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{VENTAS_CREDITO}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="371" y="186" width="80" height="14" uuid="6ad9e727-0493-4b52-9444-060d4366b696"/>
+				<reportElement x="371" y="186" width="81" height="14" uuid="6ad9e727-0493-4b52-9444-060d4366b696"/>
 				<textElement textAlignment="Right">
 					<font size="9"/>
 				</textElement>
@@ -288,6 +281,13 @@ FROM
 				</textElement>
 				<textFieldExpression><![CDATA[$F{DESCRIPCION}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement x="142" y="38" width="200" height="14" uuid="6cc16afd-828f-4849-8bb1-706f79c54658"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Ingresos Operacionales :]]></text>
+			</staticText>
 		</band>
 	</summary>
 </jasperReport>
