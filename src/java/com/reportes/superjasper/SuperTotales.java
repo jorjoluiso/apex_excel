@@ -48,7 +48,7 @@ public class SuperTotales {
         General general = new General();
         
         String archivo = general.ReportesJasper + File.separatorChar + "RptMorosidadClientes.jasper";
-        System.out.println("Archivo cargado desde :" + archivo);
+        System.out.println("Archivo cargado desde -> " + archivo);
         JasperReport masterReport = null;
 
         try {

@@ -24,10 +24,12 @@
 
     try {
         String locationVariable = System.getProperty("java.io.tmpdir") + File.separatorChar;
+        System.out.println("Directorio temporal -> " + locationVariable);
         String PathVariable = "";
 
         PathVariable = locationVariable + txtFileNameVariable;
         BufferedInputStream bufferedInputStream = null;
+
         try {
             bufferedInputStream = new BufferedInputStream(new java.io.FileInputStream(PathVariable));
         } catch (FileNotFoundException fnfe) {
