@@ -29,18 +29,21 @@
 	<subDataset name="Table Dataset 1" uuid="bc9ac577-5535-491a-83e0-84820e5f902b"/>
 	<queryString>
 		<![CDATA[SELECT
-    round(SUM(valor) - pkg_super.fun_totales_devoluciones - pkg_super.fun_totales_notas_credito,2) AS ventas_credito,
+    round(SUM(valor) - pkg_super.fun_totales_devoluciones - pkg_super.fun_totales_notas_credito
+    - pkg_super.fun_valor_no_operaciones - pkg_super.fun_totales_notas_debito,2) AS ventas_credito,
     pkg_super.fun_totales_ventas_contado('FAC') AS ventas_contado,
-0 AS saldo,
+pkg_super.fun_valor_no_operaciones AS no_operacionales,
 0 as valor,
+pkg_super.fun_valor_fletes as fletes,
 '' as descripcion
 FROM
     v_super_morosidades]]>
 	</queryString>
 	<field name="VENTAS_CREDITO" class="java.math.BigDecimal"/>
 	<field name="VENTAS_CONTADO" class="java.math.BigDecimal"/>
-	<field name="SALDO" class="java.math.BigDecimal"/>
+	<field name="NO_OPERACIONALES" class="java.math.BigDecimal"/>
 	<field name="VALOR" class="java.math.BigDecimal"/>
+	<field name="FLETES" class="java.math.BigDecimal"/>
 	<field name="DESCRIPCION" class="java.lang.String"/>
 	<summary>
 		<band height="307" splitType="Stretch">
@@ -237,28 +240,28 @@ FROM
 				<textElement textAlignment="Right">
 					<font size="9"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{SALDO}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{NO_OPERACIONALES}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="369" y="77" width="83" height="14" uuid="b698dd5a-6269-44eb-9f8e-2c052f9f20e6"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="9" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{VENTAS_CREDITO}.add( $F{VENTAS_CONTADO} )]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{VENTAS_CREDITO}.add( $F{VENTAS_CONTADO} ).add( $F{NO_OPERACIONALES} )]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="365" y="149" width="87" height="14" uuid="91c295c2-a35d-4a25-95b2-75c9d858bb5d"/>
 				<textElement textAlignment="Right">
 					<font size="9"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{VENTAS_CREDITO}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{VENTAS_CREDITO}.subtract( $F{FLETES} )]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="371" y="186" width="81" height="14" uuid="6ad9e727-0493-4b52-9444-060d4366b696"/>
 				<textElement textAlignment="Right">
 					<font size="9"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{VENTAS_CONTADO}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{VENTAS_CONTADO}.add( $F{FLETES} )]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="372" y="204" width="80" height="14" uuid="bb92d758-4cf5-4418-8963-8e5450ea6cf9"/>
