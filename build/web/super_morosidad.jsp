@@ -15,11 +15,16 @@
         out.println("Es necesario el parámetro usuario");
         return;
     }
+    if (request.getParameter("clave") == null || request.getParameter("clave") == "") {
+        out.println("Es necesario el parámetro clave");
+        return;
+    }
 
     String usuario = request.getParameter("usuario");
+    String clave = request.getParameter("clave");
     String txtFileNameVariable;
 
-    SuperTotales supertotales = new SuperTotales(usuario);
+    SuperTotales supertotales = new SuperTotales(usuario, clave);
     txtFileNameVariable = supertotales.reporteTotal();
 
     try {

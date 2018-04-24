@@ -5,14 +5,14 @@
 	<property name="ireport.y" value="0"/>
 	<queryString>
 		<![CDATA[SELECT
-    pkg_super.fun_count_mora_hasta_30 AS hasta_30,
+    PKG_SUPER.FUN_COUNT_MORA_HASTA_30_ACUMU AS hasta_30,
     SUM(mora_hasta_30) AS mora_hasta_30,
-    pkg_super.fun_count_mora_hasta_30 + pkg_super.fun_count_mora_31_60 AS de_31_60,
-    SUM(mora_hasta_30) + SUM(mora_31_60) AS mora_31_60,
-    pkg_super.fun_count_mora_hasta_30 + pkg_super.fun_count_mora_31_60 + pkg_super.fun_count_mora_mas_61 AS mas_61,
-    SUM(mora_hasta_30) + SUM(mora_31_60) + SUM(mora_mas_61) AS mora_mas_61
+    PKG_SUPER.FUN_COUNT_MORA_31_60_ACUMU AS de_31_60,
+    SUM(mora_31_60) AS mora_31_60,
+    PKG_SUPER.FUN_COUNT_MORA_MAS_61_ACUMU AS mas_61,
+    SUM(mora_mas_61) AS mora_mas_61
 FROM
-    v_super_morosidades]]>
+    V_SUPER_MOROSIDADES_ACUMULADA]]>
 	</queryString>
 	<field name="HASTA_30" class="java.math.BigDecimal"/>
 	<field name="MORA_HASTA_30" class="java.math.BigDecimal"/>

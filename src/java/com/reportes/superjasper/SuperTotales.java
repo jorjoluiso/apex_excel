@@ -8,12 +8,14 @@ package com.reportes.superjasper;
 import com.db.DataBaseConnection;
 import com.propiedades.General;
 import com.propiedades.MotorConfiguracion;
+import com.util.DecryptString;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -32,18 +34,23 @@ import net.sf.jasperreports.engine.util.JRLoader;
 public class SuperTotales {
 
     private String usuario;
+    private String clave;
 
-    public SuperTotales(String usuario) {
+    public SuperTotales(String usuario, String clave) {
         this.usuario = usuario;
+        this.clave = clave;
     }
 
-    public String reporteTotal() {
+    public String reporteTotal() throws SQLException {
         String txtFileNameVariable = this.usuario + "_jasper.pdf";
 
         MotorConfiguracion configMotor = new MotorConfiguracion();
         DataBaseConnection oc = new DataBaseConnection();
         Connection conn;
-        conn = oc.getConnection(configMotor.getHost(), configMotor.getPuerto(), configMotor.getServicio(), configMotor.getUsuario(), configMotor.getClave());
+        
+        DecryptString d = new DecryptString();
+        
+        conn = oc.getConnection(configMotor.getHost(), configMotor.getPuerto(), configMotor.getServicio(), this.usuario, d.decrypt(this.clave));
         
         General general = new General();
         
@@ -73,6 +80,7 @@ public class SuperTotales {
             JasperExportManager.exportReportToPdfStream(jp, output);
 
             output.close();
+            conn.close();
             return txtFileNameVariable;
 
         } catch (FileNotFoundException ex) {
@@ -83,8 +91,8 @@ public class SuperTotales {
         return "";
     }
 
-    public static void main(String[] args) {
-        SuperTotales superTotales = new SuperTotales("dismemayor");
+    public static void main(String[] args) throws SQLException {
+        SuperTotales superTotales = new SuperTotales("dismemayor", "d");
         superTotales.reporteTotal();
 
     }

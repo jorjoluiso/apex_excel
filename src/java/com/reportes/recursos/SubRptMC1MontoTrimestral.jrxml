@@ -29,10 +29,10 @@
 	<subDataset name="Table Dataset 1" uuid="bc9ac577-5535-491a-83e0-84820e5f902b"/>
 	<queryString>
 		<![CDATA[SELECT
-    round(SUM(valor) - pkg_super.fun_totales_devoluciones - pkg_super.fun_totales_notas_credito
-    - pkg_super.fun_valor_no_operaciones - pkg_super.fun_totales_notas_debito,2) AS ventas_credito,
+    round(SUM(nvl(valor,0)) - nvl(pkg_super.fun_totales_devoluciones,0) - nvl(pkg_super.fun_totales_notas_credito,0)
+    - nvl(pkg_super.fun_valor_no_operaciones,0) - nvl(pkg_super.fun_totales_notas_debito,0),2) AS ventas_credito,
     pkg_super.fun_totales_ventas_contado('FAC') AS ventas_contado,
-pkg_super.fun_valor_no_operaciones AS no_operacionales,
+nvl(pkg_super.fun_valor_no_operaciones,0) AS no_operacionales,
 0 as valor,
 pkg_super.fun_valor_fletes as fletes,
 '' as descripcion

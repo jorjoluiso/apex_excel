@@ -4,7 +4,11 @@
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<queryString>
-		<![CDATA[SELECT 0 AS COSTO, 60 as DIAS, round(SUM(valor) - pkg_super.fun_totales_devoluciones - pkg_super.fun_totales_notas_credito,2) AS ventas_credito,
+		<![CDATA[SELECT
+    0 AS costo,
+    60 AS dias,
+    round(SUM(nvl(valor,0) ) - nvl(pkg_super.fun_totales_devoluciones,0) - nvl(pkg_super.fun_totales_notas_credito,0) - nvl(pkg_super.fun_valor_no_operaciones,0)
+- nvl(pkg_super.fun_totales_notas_debito,0),2) - nvl(pkg_super.fun_valor_fletes,0) AS ventas_credito,
     pkg_super.fun_count_cliente_credito AS clientes_credito,
     pkg_super.fun_count_operaciones AS operaciones_credito
 FROM
